@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script defer src="color.js"></script>
+    <title>Color Picker</title>
+</head>
+<body>
+    <div id="header">
+        <h1 id="title">Color Picker</h1>
+    </div>
+    <div class="main">
+        <h3 id="instructions">
+            Remember this color!
+        </h3>
+        <div id="show"></div>
+        <input type="color" id="picker" >
+        <button id="submit" onclick="handleGuess()">Submit</button>
+        <h3 id="timer" >5</h3>
+        <button id="startButton" onclick="setColor()">Start</button>
+        <label for="name">Score:</label>
+        <h3 id="score" name="score">100</h3>
+        <button onclick="window.location.reload()"  id="play-again">Play Again</button>
+    </div>
+
+    
+</body>
+</html>
