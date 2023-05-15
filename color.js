@@ -66,6 +66,7 @@ function endTimer() {
     
 }
 function handleGuess() {
+    submit_button.disabled = true;
     color_input = picker.value;
     console.log("Guessed: ", (color_input));
     console.log("Actual: ", (color));
