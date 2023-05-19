@@ -9,6 +9,9 @@
     align-items: center;
 }
 
+#comparecolors {
+    display: inline-block;
+}
 #show {
     width: 100px;
     height: 100px;
@@ -17,6 +20,23 @@
     border-radius: 5px;
 }
 
+.box {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-color: #865;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.heading-container {
+    display: flex;
+}
+
+h4 {
+    flex: 1;
+    margin: 0;
+}
 .main {
     border: 3px solid;
     display: flex;
@@ -32,6 +52,15 @@
     display: none;
 }
 
-#submit, #play-again {
+#submit, #play-again, #instructions, #input, #actual {
     display: none;
 }
+
+label {
+    position: fixed;
+    margin-right: 25px;
+    right: 20px;
+    font-size: larger;
+    border:rgb(121, 169, 211);
+}
+

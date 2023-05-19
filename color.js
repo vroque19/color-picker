@@ -3,7 +3,7 @@ let max_color = 16777215;
 let current_time = 5;
 let timer_id;
 let color;
-let current_score = 0;
+let current_score = "";
 let color_input;
 
 let show;
@@ -14,6 +14,8 @@ let score_text;
 let submit_button;
 let instructions;
 let play_again;
+let color_act;
+let color_guessed;
 
 const MAX_ALLOWED_POINTS = 1000;
 const BOOST = 1000;
@@ -29,6 +31,8 @@ function mount() {
     timer.textContent = current_time;
     score_text.textContent = current_score;
     play_again = document.getElementById("play-again");
+    color_act = document.getElementById("actual");
+    color_guessed = document.getElementById("input");
 }
 
 function getColor() {
@@ -38,6 +42,7 @@ function getColor() {
 
 function setColor() {
     console.log("Hello");
+    instructions.style.display = "block";
     color = getColor();
     show.style.backgroundColor = color;
     show.style.display = "block";
@@ -62,6 +67,7 @@ function endTimer() {
     timer.style.display = "none";
     picker.style.display = "block";
     submit.style.display = "block";
+    score_text.style.diplay = "block";
     instructions.textContent = "What was the color? Use the color picker below."
     
 }
@@ -74,8 +80,21 @@ function handleGuess() {
     let points_to_award = getAdjustedPoints(color_difference);
     console.log("cd: ", color_difference, "points: ", points_to_award)
     current_score += points_to_award;
-    score_text.textContent = current_score;
-    play_again.style.display = "block";
+    if(score_text.textContent == "") {
+        score_text.textContent = current_score;
+    }
+    play_again.style.display = "inline-block";
+    compareColors(color, color_input);
+    score_text.style.diplay = "block";
+    if(color_difference < 20.5) {
+        instructions.textContent = "WOW! Maximum points awarded."
+    }
+    else if(color_difference > 100) {
+        instructions.textContent = "Way off. Play again!"
+    }
+    else {
+        instructions.textContent = "Pretty close! Play again?"
+    }
 }
 
 function hexToRGB(hex_color) {
@@ -123,6 +142,15 @@ function colorDifference(color_actual, color_guess) {
     let guess_point = hexToRGB(color_guess);
 
     return euclidDist(actual_point, guess_point);
+}
+
+function compareColors(color_actual, color_guess) {
+    console.log("comparing colors", color_actual, "and ", color_guess);
+    color_guessed.style.backgroundColor = color_guess;
+    color_act.style.backgroundColor = color_actual;
+    color_act.style.display = "inline-block";
+    color_guessed.style.display = "inline-block";
+    picker.style.display = "none";
 }
 
 
