@@ -18,7 +18,7 @@ let color_act;
 let color_guessed;
 
 const MAX_ALLOWED_POINTS = 1000;
-const BOOST = 1000;
+const BOOST = 700;
 
 function mount() {
     show = document.getElementById("show");
@@ -133,7 +133,7 @@ function euclidDist(p1, p2) {
 function getAdjustedPoints(dist) {
     console.log('dist', dist)
     if (dist <= 40) return MAX_ALLOWED_POINTS;
-    if (dist >= 400) return 0;
+    if (dist >= 300) return 0;
     return Math.floor(BOOST/dist);
 }
 
