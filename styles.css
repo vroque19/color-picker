@@ -3,10 +3,17 @@
 }
 
 #header {
-    background-color: rgb(186, 105, 105);
+    background-image: linear-gradient(to right, rgb(255, 111, 111),rgb(255, 205, 111),rgb(252, 252, 182),rgb(171, 233, 171),rgb(155, 155, 255),rgb(207, 140, 255),rgb(248, 157, 248));
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#startButton {
+    margin-top: 10px;
+}
+#score-text {
+    display: none;
 }
 
 #comparecolors {
@@ -52,7 +59,7 @@ h4 {
     display: none;
 }
 
-#submit, #play-again, #instructions, #input, #actual {
+#submit, #play-again, #instructions, #input, #actual, #timer {
     display: none;
 }
 
@@ -63,4 +70,6 @@ label {
     font-size: larger;
     border:rgb(121, 169, 211);
 }
+
+
 

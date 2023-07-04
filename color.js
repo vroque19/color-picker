@@ -11,6 +11,7 @@ let timer;
 let start_button;
 let picker;
 let score_text;
+let curr_score;
 let submit_button;
 let instructions;
 let play_again;
@@ -22,14 +23,15 @@ const BOOST = 700;
 
 function mount() {
     show = document.getElementById("show");
+    score_text = document.getElementById("score-text");
     timer = document.getElementById("timer");
     start_button = document.getElementById("startButton");
     picker = document.getElementById("picker");
     submit_button = document.getElementById("submit");
     instructions = document.getElementById("instructions");
-    score_text = document.getElementById("score");
+    curr_score = document.getElementById("score");
     timer.textContent = current_time;
-    score_text.textContent = current_score;
+    curr_score.textContent = current_score;
     play_again = document.getElementById("play-again");
     color_act = document.getElementById("actual");
     color_guessed = document.getElementById("input");
@@ -51,6 +53,7 @@ function setColor() {
 }
 
 function startTimer() {
+    timer.style.display = "block";
     picker.value = getColor();
     timer_id = setInterval(function(){
         timer.textContent = current_time;
@@ -67,7 +70,6 @@ function endTimer() {
     timer.style.display = "none";
     picker.style.display = "block";
     submit.style.display = "block";
-    score_text.style.diplay = "block";
     instructions.textContent = "What was the color? Use the color picker below."
     
 }
@@ -80,12 +82,13 @@ function handleGuess() {
     let points_to_award = getAdjustedPoints(color_difference);
     console.log("cd: ", color_difference, "points: ", points_to_award)
     current_score += points_to_award;
-    if(score_text.textContent == "") {
-        score_text.textContent = current_score;
+    console.log("score:", current_score)
+    if(curr_score.textContent == "") {
+        curr_score.textContent = current_score;
     }
     play_again.style.display = "inline-block";
     compareColors(color, color_input);
-    score_text.style.diplay = "block";
+    showScore();
     if(color_difference < 20.5) {
         instructions.textContent = "WOW! Maximum points awarded."
     }
@@ -151,6 +154,12 @@ function compareColors(color_actual, color_guess) {
     color_act.style.display = "inline-block";
     color_guessed.style.display = "inline-block";
     picker.style.display = "none";
+    
+}
+
+function showScore() {
+    score_text.style.display = "block";
+    curr_score.style.diplay = "block";
 }
 
 
