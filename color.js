@@ -18,8 +18,8 @@ let play_again;
 let color_act;
 let color_guessed;
 
-const MAX_ALLOWED_POINTS = 1000;
-const BOOST = 700;
+const MAX_ALLOWED_POINTS = 100;
+const BOOST = 2500;
 
 function mount() {
     show = document.getElementById("show");
@@ -79,17 +79,17 @@ function handleGuess() {
     console.log("Guessed: ", (color_input));
     console.log("Actual: ", (color));
     let color_difference = colorDifference(color, color_input);
+    console.log("score:", current_score)
     let points_to_award = getAdjustedPoints(color_difference);
     console.log("cd: ", color_difference, "points: ", points_to_award)
     current_score += points_to_award;
-    console.log("score:", current_score)
     if(curr_score.textContent == "") {
         curr_score.textContent = current_score;
     }
     play_again.style.display = "inline-block";
     compareColors(color, color_input);
     showScore();
-    if(color_difference < 20.5) {
+    if(color_difference < 20) {
         instructions.textContent = "WOW! Maximum points awarded."
     }
     else if(color_difference > 100) {
@@ -135,7 +135,7 @@ function euclidDist(p1, p2) {
 
 function getAdjustedPoints(dist) {
     console.log('dist', dist)
-    if (dist <= 40) return MAX_ALLOWED_POINTS;
+    if (dist <= 25) return MAX_ALLOWED_POINTS;
     if (dist >= 300) return 0;
     return Math.floor(BOOST/dist);
 }
